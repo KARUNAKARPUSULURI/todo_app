@@ -1,4 +1,5 @@
 import React from "react";
+import "./addTodo.css"
 
 const AddTodo = ({newTodo, setNewTodo, addTask}) => {
     return (
@@ -9,7 +10,7 @@ const AddTodo = ({newTodo, setNewTodo, addTask}) => {
                 onChange={(e) => setNewTodo(e.target.value)}
                 placeholder="Add a new task"
             />
-            <button onClick={addTask}>Add</button>
+            <button className="add_btn" onClick={addTask}>Add</button>
         </>
     )
 };

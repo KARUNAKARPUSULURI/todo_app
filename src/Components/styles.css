@@ -1,0 +1,35 @@
+/* styles.css */
+/* Your other styles */
+li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  li span {
+    flex: 1;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #8BC34A; /* green */
+  }
+  
+  .notCompleted {
+    color: #FF5722; /* red */
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
