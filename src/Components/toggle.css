@@ -1,18 +1,21 @@
 .toggleBtn {
-    padding: 8px 16px;
-    margin: 8px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .allTasksBtn {
-    background-color: #2196F3; 
-    color: #fff;
-  }
-  
-  .completedTasksBtn {
-    background-color: #4CAF50;
-    color: #fff;
-  }
-  
+  padding: 8px 16px;
+  margin: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.allTasksBtn {
+  background-color: #2196F3; 
+  color: #fff;
+}
+
+.completedTasksBtn {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.active {
+  background-color: #555;
+}

@@ -10,14 +10,23 @@ const TodoList = () => {
   const [todoLists, setTodoLists] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [toggle, setToggle] = useState('all');
+  const [error, setError] = useState("");
 
-  const addTask = (e, index) => {
+  const addTask = (e) => {
     e.preventDefault();
+    if (newTodo.trim() === "") {
+      setError("Task cannot be empty!");
+      return;
+    }
+
+    const taskId = new Date().getTime();
+
     setTodoLists([
       ...todoLists,
-      { id: index + 1, title: newTodo, completed: false },
+      { id: taskId, title: newTodo, completed: false },
     ]);
     setNewTodo("");
+    setError("");
   };
 
   const toggleComplete = (taskId) => {
@@ -45,40 +54,31 @@ const TodoList = () => {
       ? todoLists.filter((task) => task.completed)
       : todoLists;
 
-      useEffect(() => {
-        if (todoLists.length === 0) {
-          axios.get(todoListUrl)
-            .then((res) => {
-              console.log("todos:", res?.data);
-              const fetchedData = res?.data || [];
-              setTodoLists(fetchedData);
-            })
-            .catch((err) => {
-              console.log("error:", err);
-            });
-        }
-      }, [todoLists, todoListUrl]);
-      
+  useEffect(() => {
+    if (todoLists.length === 0) {
+      axios.get(todoListUrl)
+        .then((res) => {
+          console.log("todos:", res?.data);
+          const fetchedData = res?.data || [];
+          setTodoLists(fetchedData);
+        })
+        .catch((err) => {
+          console.log("error:", err);
+        });
+    }
+  }, [todoLists, todoListUrl]);
 
   return (
     <div>
       <h1>Todo app</h1>
-      <AddTodo newTodo={newTodo} setNewTodo={setNewTodo} addTask={addTask} />
+      <AddTodo newTodo={newTodo} setNewTodo={setNewTodo} addTask={addTask} error={error} />
       <Toggle setToggle={setToggle} />
       <EditDeleteTodos
         toggleComplete={toggleComplete}
         editTask={editTask}
         deleteTask={deleteTask}
-        filteredTasks={filteredTodoLists} 
+        filteredTasks={filteredTodoLists}
       />
-      {/* <ul>
-        {filteredTodoLists.map((item) => (
-          <li key={item.id}>
-            <span>{item.title}</span>
-            {item.completed ? " (Completed)" : " (Not Completed)"}
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };

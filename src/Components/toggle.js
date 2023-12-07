@@ -1,18 +1,31 @@
 // Toggle.js
-import React from "react";
+import React, { useState } from "react";
 import './toggle.css'; 
 
 const Toggle = ({ setToggle }) => {
-    return (
-        <div>
-            <button className="toggleBtn allTasksBtn" onClick={() => setToggle('all')}>
-                All Tasks
-            </button>
-            <button className="toggleBtn completedTasksBtn" onClick={() => setToggle('completed')}>
-                Completed Tasks
-            </button>
-        </div>
-    )
+  const [activeButton, setActiveButton] = useState('all');
+
+  const handleButtonClick = (buttonType) => {
+    setToggle(buttonType);
+    setActiveButton(buttonType);
+  };
+
+  return (
+    <div>
+      <button
+        className={`toggleBtn allTasksBtn ${activeButton === 'all' ? 'active' : ''}`}
+        onClick={() => handleButtonClick('all')}
+      >
+        All Tasks
+      </button>
+      <button
+        className={`toggleBtn completedTasksBtn ${activeButton === 'completed' ? 'active' : ''}`}
+        onClick={() => handleButtonClick('completed')}
+      >
+        Completed Tasks
+      </button>
+    </div>
+  );
 };
 
 export default Toggle;
