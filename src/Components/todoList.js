@@ -4,6 +4,7 @@ import { todoListUrl } from "../Constants/constants";
 import AddTodo from "./addTodo";
 import Toggle from "./toggle";
 import EditDeleteTodos from "./editDelete";
+import todoListLogo from "../images/logo-black.png"
 import "./styles.css";
 
 const TodoList = () => {
@@ -71,6 +72,7 @@ const TodoList = () => {
   return (
     <div>
       <h1>Todo app</h1>
+      <img src={todoListLogo} alt="this is a logo of todolist"/>
       <AddTodo newTodo={newTodo} setNewTodo={setNewTodo} addTask={addTask} error={error} />
       <Toggle setToggle={setToggle} />
       <EditDeleteTodos
